@@ -1,0 +1,9 @@
+<% posts.each do |post| %>
+  <div class="p-4 border border-gray-300 rounded-lg">
+    <h2><%= post.title %></h2>
+    <p><%= post.body %></p>
+    <p>
+      <%= link_to "Show this post", post, class: "text-blue-500" %>
+    </p>
+  </div>
+<% end %>

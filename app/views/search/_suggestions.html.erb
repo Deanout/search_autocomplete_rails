@@ -1,0 +1,9 @@
+<% if results.any? %>
+  <div class="absolute w-full overflow-y-auto max-h-60 bg-white rounded-lg shadow-lg">
+    <% results.each do |post| %>
+      <div class="p-2 border-b border-gray-300 hover:bg-gray-100">
+        <%= link_to post.title, post, class: "text-blue-500" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

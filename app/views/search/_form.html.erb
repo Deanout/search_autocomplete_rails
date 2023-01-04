@@ -1,0 +1,21 @@
+<%= form_with(url: search_path, method: :post, class: "w-60", data: {
+    controller: "search",
+    action: "keyup->search#suggestions",
+    suggestions_url: search_suggestions_path,
+}) do |form| %>
+  <div class="relative">
+    <%= form.text_field :query, data: {
+            search_target: "input",
+            action: "blur->search#hideSuggestions",
+        },
+        class: "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200",
+        placeholder: "Search...", autocomplete: "off" %>
+    <div class="absolute inset-y-0 right-0 flex items-center">
+      <%= form.submit "Search", class: "p-2 text-white bg-indigo-500 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600" %>
+    </div>
+    <div id="suggestions" class="absolute w-full mt-2 bg-white rounded-lg shadow-lg"
+        data-search-target="suggestions" data-action="mousedown->search#childClicked">
+      <%= render partial: "search/suggestions", locals: { results: results } %>
+    </div>
+  </div>
+<% end %>
